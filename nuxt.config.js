@@ -81,12 +81,7 @@ export default {
     }
   },
 
-  /*
-  ** Server Middleware
-  */
-  serverMiddleware: {
-    '/api': '~/api/index.js'
-  },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
