@@ -8,4 +8,4 @@ router.use('/test', (req, res) => {
   res.end('Test APasjniudI!')
 })
 
-module.exports = router
+export default router

@@ -61,6 +61,7 @@ export default Vue.extend({
         customGeneratedLink: '',
         url: '',
       },
+      invalidUrlName: ['api'],
     }
   },
 
