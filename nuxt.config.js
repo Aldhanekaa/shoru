@@ -1,6 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+    /*
+  ** Nuxt target
+  ** See https://nuxtjs.org/api/configuration-target
+  */
+  target: 'server',
+  
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - shoru',
@@ -22,6 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,6 +48,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxt/http',
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -72,7 +81,17 @@ export default {
     }
   },
 
+  /*
+  ** Server Middleware
+  */
+  serverMiddleware: {
+    '/api': '~/api/'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  
+
+  
 }

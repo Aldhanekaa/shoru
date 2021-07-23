@@ -26,9 +26,10 @@
         <v-col v-if="isCustom" cols="12">
           <v-text-field
             label="Name"
-            hint="shoru.vercel.app/page"
+            :hint="'shoru.vercel.app/' + input.customGeneratedLink"
             persistent-hint
             outlined
+            @change="customGeneratedLinkOnChange"
           ></v-text-field>
         </v-col>
         <v-col cols="12">
@@ -48,6 +49,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import axios from '@nuxtjs/axios'
 
 export default Vue.extend({
   data() {
@@ -55,6 +57,10 @@ export default Vue.extend({
       isCustom: false,
       select: 'random',
       items: ['random', 'custom'],
+      input: {
+        customGeneratedLink: '',
+        url: '',
+      },
     }
   },
 
@@ -65,6 +71,14 @@ export default Vue.extend({
       if (e === 'custom') this.isCustom = true
       else this.isCustom = false
     },
+    customGeneratedLinkOnChange(e: string): void {
+      this.input.customGeneratedLink = e
+    },
+    urlOnChange(e: string): void {
+      this.input.url = e
+    },
+
+    onSubmit(): void {},
   },
 })
 </script>
