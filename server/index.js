@@ -21,7 +21,7 @@ async function start() {
     }
     // Listen the server
     app.listen(port, '0.0.0.0')
-    console.log('Server listening on `localhost:' + port + '`.')
+    console.log('Server listening on `server:' + port + '`.')
 }
 
 start()
