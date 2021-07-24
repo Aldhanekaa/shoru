@@ -109,6 +109,7 @@ export default Vue.extend({
         }
       })
       e.preventDefault()
+      console.log(this.$config.http)
 
       try {
         interface ReqI {
@@ -116,7 +117,7 @@ export default Vue.extend({
           name?: string
         }
         const Req: ReqI = {
-          url: 'https://aldhanekaa.github.io',
+          url: this.input.url,
         }
         if (this.isCustom) {
           Req.name = this.input.customGeneratedLink
@@ -126,7 +127,7 @@ export default Vue.extend({
           message: string
           url?: string
           status?: 'success!'
-        }>('https://shoru.herokuapp.com/api/add', Req)
+        }>('/api/add', Req)
 
         if (this.isCustom && res.status !== 'success!') {
           // @ts-ignore

@@ -46,7 +46,7 @@ async function start() {
   }
   // Listen on port 5000
   app.listen(port, () => {
-    console.log(`Server is booming on port 5000
+    console.log(`Server is booming on port ${port}
       Visit http://localhost:${port}`)
   })
 
