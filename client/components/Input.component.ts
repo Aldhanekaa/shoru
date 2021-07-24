@@ -130,7 +130,12 @@ export default Vue.extend({
           message: string
           url?: string
           status?: 'success!'
-        }>('/api/add', Req)
+        }>(
+          `${
+            this.$config.http.isDev ? '' : 'https://shoru.herokuapp.com'
+          }/api/add`,
+          Req
+        )
 
         if (this.isCustom && res.status !== 'success!') {
           // @ts-ignore

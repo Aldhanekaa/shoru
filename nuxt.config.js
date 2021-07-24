@@ -9,7 +9,7 @@ export default {
   publicRuntimeConfig: {
     dev: 'hey',
     http: {
-      asd: 'asd',
+      isDev: process.env.NODE_ENV !== 'production',
     },
   },
   // Global page headers: https://go.nuxtjs.dev/config-head

@@ -1,5 +1,7 @@
 # shoru ショル
 
+A Free Open Source URL Shortener
+
 ## Build Setup
 
 ```bash
