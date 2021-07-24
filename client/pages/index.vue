@@ -12,16 +12,7 @@
         </p>
 
         <Input />
-        <p class="mt-4 text-gray-500">
-          To get started, remove
-          <code class="bg-gray-100 text-sm p-1 rounded border"
-            >components/Tutorial.vue</code
-          >
-          and start coding in
-          <code class="bg-gray-100 text-sm p-1 rounded border"
-            >pages/index.vue</code
-          >. Have fun!
-        </p>
+        
       </v-card>
       <div class="flex justify-center pt-4 space-x-2">
         <a href="https://github.com/aldhanekaa/shoru" target="_blank"
