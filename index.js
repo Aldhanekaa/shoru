@@ -27,9 +27,8 @@ async function start() {
     Visit http://localhost:${port}`);
     });
 
-    return app
 }
 
 
   
-module.exports = start()
+ start()
