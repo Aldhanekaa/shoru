@@ -20,5 +20,7 @@
           }
         }
        
-      ]
+      ],
+      "rewrites": [{ "source": "/server/(.*)", "destination": "/api" }]
+
   }
