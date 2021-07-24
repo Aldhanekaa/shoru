@@ -22,7 +22,7 @@ async function start() {
 }
 
 app.get('/', (req, res) => {
-    res.send('hey')
+    res.send('heyoo!!')
 })
 
 
