@@ -111,8 +111,7 @@ module.exports = (app) => {
           return
         }
       } catch (err) {
-        console.log(err)
-        res.send({ status: 'error', message: 'error occured' })
+        res.send({ status: 'server-error', message: 'error occured' })
         return
       }
     }

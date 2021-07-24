@@ -6,17 +6,16 @@
     />
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
       <v-card class="mt-8 overflow-hidden shadow sm:rounded-lg p-6 text-center">
-        <h1 class="text-4xl mt-10 leading-7 font-semibold">
+        <h1 v-if="error" class="text-4xl mt-10 leading-7 font-semibold">
+          {{ message }}
+        </h1>
+        <h1 v-else class="text-4xl mt-10 leading-7 font-semibold">
           We Are Sorry the Url is not found :(
         </h1>
-        <p class="mt-5 text-gray-600 pb-5 border-b border-dashed">
-          Wanna shorten your url? Just use
-          <a href="https://shoru.vercel.app">Shoru</a>, no need to sign up!
-        </p>
 
-        <p class="mt-10 text-gray-500">
-          Made with luv by Aldhaneka
-          <a href="https://github.com/aldhanekaa">Aldhaneka</a>
+        <p class="mt-5 text-gray-600 pb-5">
+          Wanna shorten your url? Just use
+          <NuxtLink to="/">Shoru</NuxtLink>, no need to sign up!
         </p>
       </v-card>
       <div class="flex justify-center pt-4 space-x-2">
@@ -37,6 +36,10 @@
               fill="currentColor"
             /></svg
         ></a>
+        <p class="text-gray-500">
+          Made with luv by
+          <a href="https://github.com/aldhanekaa">Aldhaneka</a>
+        </p>
       </div>
     </div>
   </div>
@@ -53,11 +56,14 @@ export default Vue.extend({
     }/api/${params.url}`
     try {
       const APIResponse = await $axios.get<{
-        status: 'success' | 'error'
+        status: 'success' | 'error' | 'server-error'
         url?: string
         message: string
       }>(APIRoute)
-      if (APIResponse.data.status === 'success') {
+
+      if (APIResponse.data.status === 'server-error') {
+        throw new Error('Error ')
+      } else if (APIResponse.data.status === 'success') {
         // @ts-ignore
         redirect(APIResponse.data.url)
       } else {
@@ -69,21 +75,14 @@ export default Vue.extend({
       return
     } catch (err) {
       return {
-        message: 'error occured from server',
-        log: String(err),
+        message: 'Error Occured From Server',
+        error: true,
       }
     }
   },
   data() {
     return {
-      isCustom: false,
-      select: 'random',
-      items: ['random', 'custom'],
-      input: {
-        customGeneratedLink: '',
-        url: '',
-      },
-      invalidUrlName: ['api'],
+      error: false,
     }
   },
 
