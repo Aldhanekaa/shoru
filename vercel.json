@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "builds": [
-      {
-          "src": "./index.js",
-          "use": "@vercel/node"
-      }
-  ],
-  "routes": [
-      {
-          "src": "/(.*)",
-          "dest": "/"
-      }
+  "redirects": [
+    { "source": "/api/:path*", "destination": "https://shoru.herokuapp.com/api/:path*" },
+    { "source": "/", "destination": "https://shoru.herokuapp.com" }
+    
   ]
 }
