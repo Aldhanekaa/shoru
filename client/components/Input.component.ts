@@ -96,7 +96,7 @@ export default Vue.extend({
       this.input.customGeneratedLink = e
     },
 
-    onSubmitForm(e: HTMLFormElement): void {
+    async onSubmitForm(e: HTMLFormElement): Promise<void> {
       Object.keys(this.form).forEach((f) => {
         // @ts-ignore
         if (this.$refs[f]) {
@@ -108,10 +108,47 @@ export default Vue.extend({
           //   if (this.$refs[f].hasError()) this.formHasErrors = true
         }
       })
-
-      console.log()
-
       e.preventDefault()
+
+      try {
+        interface ReqI {
+          url: string
+          name?: string
+        }
+        const Req: ReqI = {
+          url: 'https://aldhanekaa.github.io',
+        }
+        if (this.isCustom) {
+          Req.name = this.input.customGeneratedLink
+        }
+
+        const res = await this.$axios.$post<{
+          message: string
+          url?: string
+          status?: 'success!'
+        }>('/api/add', Req)
+
+        if (this.isCustom && res.status !== 'success!') {
+          // @ts-ignore
+          // console.log(this.$refs.customGeneratedLink)
+          // @ts-ignore
+          this.$refs.customGeneratedLink.error = true
+          // @ts-ignore
+          this.$refs.customGeneratedLink.errorMessages = res.message
+        }
+
+        if (res.status === 'success!') {
+          window.alert(`
+success generated link!
+${res.url}
+          `)
+          this.$nuxt.refresh()
+        }
+
+        console.log(res)
+      } catch (err) {
+        window.alert('error accured')
+      }
     },
   },
 })

@@ -3,8 +3,14 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   target: 'server',
   ssr: true,
-  publicRuntimeOptions: {
+  http: {
+    b: 'hey',
+  },
+  publicRuntimeConfig: {
     dev: 'hey',
+    http: {
+      asd: 'asd',
+    },
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   srcDir: 'client/',

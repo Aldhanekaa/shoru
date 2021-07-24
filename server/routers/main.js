@@ -62,7 +62,7 @@ module.exports = (app) => {
               await newUrl.save()
               res.json({
                 url: `https://shoru.vercel.app/${name}`,
-                message: 'success!',
+                status: 'success!',
               })
               return
             } catch (error) {
