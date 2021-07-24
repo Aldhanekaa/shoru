@@ -6,14 +6,8 @@
         "src": "nuxt.config.js",
         "use": "@nuxtjs/vercel-builder",
         "config": {
-            "serverFiles": ["package.json","server-middleware/**"]
-
+            "serverFiles": ["package.json"]
         }
-        
-      },
-      {
-        "src": "api/**/*.js",
-        "use": "@vercel/node"
       }
     ],
     "routes": [
@@ -25,6 +19,6 @@
             "Service-Worker-Allowed": "/"
           }
         }
-        
+       
       ]
   }
