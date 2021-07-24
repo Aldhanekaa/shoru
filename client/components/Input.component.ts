@@ -71,12 +71,13 @@ export default Vue.extend({
     getUrl(): string {
       return this.input.url
     },
-    setInput(key: string, value: string): void {
+    setInput(key: 'url' | 'customGeneratedLink', value: string): void {
       // @ts-ignore
-      if (this.input[key]) {
-        // @ts-ignore
-        this.input[key] = value
-      }
+      this.input = Object.assign({}, this.input, {
+        [key]: value,
+      })
+
+      console.log(this.input)
     },
     setHint(key: string, value: string): void {
       // @ts-ignore
@@ -120,6 +121,7 @@ export default Vue.extend({
         const Req: ReqI = {
           url: this.input.url,
         }
+        console.log(this.getUrl())
         if (this.isCustom) {
           Req.name = this.input.customGeneratedLink
         }
@@ -147,7 +149,7 @@ ${res.url}
           this.$nuxt.refresh()
         }
 
-        console.log(res)
+        console.log('res', res)
       } catch (err) {
         window.alert('error accured')
       }
