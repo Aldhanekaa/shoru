@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   target: 'server',
   ssr: true,
-  env: {
-    dev: process.env.NODE_ENV !== 'production',
+  publicRuntimeOptions: {
+    dev: 'hey',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   srcDir: 'client/',

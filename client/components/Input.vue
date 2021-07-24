@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <form @submit="onSubmitForm">
     <v-container>
       <v-row>
         <v-col cols="12">
@@ -25,63 +25,45 @@
         </v-col>
         <v-col v-if="isCustom" cols="12">
           <v-text-field
-            label="Name"
-            :hint="'shoru.vercel.app/' + input.customGeneratedLink"
+            id="customGeneratedLink"
+            ref="customGeneratedLink"
+            label="customGeneratedLink"
+            :hint="input.hints.customGeneratedLink"
             persistent-hint
             outlined
+            :value="input.customGeneratedLink"
+            :rules="[input.rules.customGeneratedLink]"
+            required
             @change="customGeneratedLinkOnChange"
           ></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-text-field label="Url Here" outlined></v-text-field>
+          <v-text-field
+            id="url"
+            ref="url"
+            label="url"
+            :hint="input.hints.url"
+            persistent-hint
+            outlined
+            :value="input.url"
+            :rules="[input.rules.url]"
+            required
+          ></v-text-field>
         </v-col>
 
         <v-col cols="12">
-          <v-btn tile style="width: 100%">
+          <v-btn type="submit" tile style="width: 100%">
             <v-icon left> mdi-cloud-upload </v-icon>
             Shorten
           </v-btn>
         </v-col>
       </v-row>
     </v-container>
-  </v-form>
+  </form>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import InputComponentScript from './Input.component'
 
-export default Vue.extend({
-  data() {
-    return {
-      isCustom: false,
-      select: 'random',
-      items: ['random', 'custom'],
-      input: {
-        customGeneratedLink: '',
-        url: '',
-      },
-      invalidUrlName: ['api'],
-    }
-  },
-
-  computed: {},
-
-  methods: {
-    generatedLinkOnChange(e: string): void {
-      if (e === 'custom') this.isCustom = true
-      else {
-        this.isCustom = false
-        console.log(process.env)
-      }
-    },
-    customGeneratedLinkOnChange(e: string): void {
-      this.input.customGeneratedLink = e
-    },
-    urlOnChange(e: string): void {
-      this.input.url = e
-    },
-
-    onSubmit(): void {},
-  },
-})
+export default InputComponentScript
 </script>
