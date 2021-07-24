@@ -2,7 +2,7 @@
     "version": 2,
     "redirects": [
       { "source": "/api/:path*", "destination": "https://shoru.herokuapp.com/api/:path*" },
-      { "source": "/", "destination": "https://shoru.herokuapp.com" }
+      { "source": "/", "destination": "https://shoru.herokuapp.com" },
       { "source": "/:url*", "destination": "https://shoru.herokuapp.com/:url*" }
 
     ],
