@@ -21,8 +21,8 @@ async function start() {
     // console.log('Server listening on `server:' + port + '`.')
 }
 
-app.get('/api/', (req, res) => {
-    res.end('hey')
+app.get('/', (req, res) => {
+    res.send('hey')
 })
 
 
@@ -33,4 +33,3 @@ app.listen(port, () => {
   });
 
   
-module.exports = app
