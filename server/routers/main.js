@@ -4,6 +4,8 @@ const { application } = require('express')
 const Url = require('../models/url.model')
 /* eslint-enable */
 
+const invalidNames = ['api', 'apis', 'view', 'views']
+
 /**
  * @param {application} app
  */
@@ -50,7 +52,7 @@ module.exports = (app) => {
               return
             }
 
-            if (['api', 'apis'].includes(name)) {
+            if (invalidNames.includes(name)) {
               res.json({
                 message: 'Invalid name, please refer to other name.',
               })
@@ -63,6 +65,7 @@ module.exports = (app) => {
               res.json({
                 url: `https://shoru.vercel.app/${name}`,
                 status: 'success!',
+                name,
               })
               return
             } catch (error) {
@@ -78,6 +81,7 @@ module.exports = (app) => {
             res.json({
               url: `https://shoru.vercel.app/${newUrl.id}`,
               message: 'success!',
+              name: newUrl.id,
             })
             return
           } catch (error) {

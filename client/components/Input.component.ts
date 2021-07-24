@@ -129,7 +129,7 @@ export default Vue.extend({
         const res = await this.$axios.$post<{
           message: string
           url?: string
-          status?: 'success!'
+          name: string
         }>(
           `${
             this.$config.http.isDev ? '' : 'https://shoru.herokuapp.com'
@@ -137,7 +137,7 @@ export default Vue.extend({
           Req
         )
 
-        if (this.isCustom && res.status !== 'success!') {
+        if (this.isCustom && res.message !== 'success!') {
           // @ts-ignore
           // console.log(this.$refs.customGeneratedLink)
           // @ts-ignore
@@ -146,12 +146,9 @@ export default Vue.extend({
           this.$refs.customGeneratedLink.errorMessages = res.message
         }
 
-        if (res.status === 'success!') {
-          window.alert(`
-success generated link!
-${res.url}
-          `)
-          this.$nuxt.refresh()
+        if (res.message === 'success!') {
+          // @ts-ignore
+          window.location = `/view/${res.name}`
         }
 
         console.log('res', res)

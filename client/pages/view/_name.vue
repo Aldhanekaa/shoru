@@ -9,11 +9,31 @@
         <h1 v-if="error" class="text-4xl mt-10 leading-7 font-semibold">
           {{ message }}
         </h1>
+
+        <h1 v-if="found" class="text-4xl mt-10 leading-7 font-semibold">
+          Shoru - View Url
+        </h1>
         <h1 v-else class="text-4xl mt-10 leading-7 font-semibold">
           We Are Sorry the Url is not found :(
         </h1>
 
-        <p class="mt-5 text-gray-600 pb-5">
+        <p v-if="found" class="mt-4 text-gray-600 pb-5">
+          See info about <span class="font-bold">{{ url_name }}</span> url name
+        </p>
+
+        <v-col v-if="found" cols="12">
+          <a :href="'https://shoru.vercel.app/' + url_name">
+            <v-btn type="submit" tile style="width: 100%"> Open Url </v-btn>
+          </a>
+        </v-col>
+
+        <p
+          :class="
+            found
+              ? 'py-5 mt-10 text-gray-600 pb-5 border-t border-dashed'
+              : 'py-5 mt-5 text-gray-600 pb-5'
+          "
+        >
           Wanna shorten your url? Just use
           <NuxtLink to="/">Shoru</NuxtLink>, no need to sign up!
         </p>
@@ -46,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import urlPage from './_url.page'
+import viewPage from './view.page'
 
-export default urlPage
+export default viewPage
 </script>
