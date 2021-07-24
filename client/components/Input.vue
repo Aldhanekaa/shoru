@@ -49,7 +49,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from '@nuxtjs/axios'
 
 export default Vue.extend({
   data() {
@@ -70,7 +69,10 @@ export default Vue.extend({
   methods: {
     generatedLinkOnChange(e: string): void {
       if (e === 'custom') this.isCustom = true
-      else this.isCustom = false
+      else {
+        this.isCustom = false
+        console.log(process.env)
+      }
     },
     customGeneratedLinkOnChange(e: string): void {
       this.input.customGeneratedLink = e

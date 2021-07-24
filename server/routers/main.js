@@ -49,6 +49,14 @@ module.exports = (app) => {
               })
               return
             }
+
+            if (['api', 'apis'].includes(name)) {
+              res.json({
+                message: 'Invalid name, please refer to other name.',
+              })
+              return
+            }
+
             const newUrl = new Url({ name: req.body.name, url })
             try {
               await newUrl.save()
@@ -86,7 +94,29 @@ module.exports = (app) => {
     res.json({ message: 'please fill the url' })
   })
 
-  app.get('/api', (req, res) => {
-    res.send('he')
+  /* eslint-disable */
+  app.get('/api/:name', async (req, res) => {
+    const { name } = req.params
+
+    if (name) {
+      try {
+        const url = await Url.findOne({ name: name })
+        console.log(url)
+
+        if (url) {
+          res.json({ status: 'success', url: url.url })
+          return
+        } else {
+          res.send({ status: 'error', message: 'not found' })
+          return
+        }
+      } catch (err) {
+        console.log(err)
+        res.send({ status: 'error', message: 'error occured' })
+        return
+      }
+    }
+
+    res.send({ status: 'error', message: 'not found' })
   })
 }

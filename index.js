@@ -7,6 +7,7 @@ const helmet = require('helmet')
 const mongoose = require('mongoose')
 
 const app = require('express')()
+
 const mainAPIRoute = require('./server/routers/main')
 const isDev = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 3000
@@ -30,7 +31,6 @@ mongoose.connect(MongoDB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-console.log(MongoDB_URI)
 /* eslint-enable */
 
 async function start() {
