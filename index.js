@@ -12,25 +12,24 @@ async function start() {
     // Render every route with Nuxt.js
     app.use(nuxt.render)
 
+    app.get('/api', (req, res) => {
+        res.send('hesyoo!!')
+    })
+    
+
     // Build only in dev mode with hot-reloading
     if (isDev) {
         build(nuxt)
     }
-    // Listen the server
-    app.listen(port, '0.0.0.0')
-    console.log('Server listening on `server:' + port + '`.')
+    // Listen on port 5000
+    app.listen(port, () => {
+        console.log(`Server is booming on port 5000
+    Visit http://localhost:${port}`);
+    });
+
+    return app
 }
 
-app.get('/', (req, res) => {
-    res.send('hesyoo!!')
-})
-
-
-// Listen on port 5000
-app.listen(port, () => {
-    console.log(`Server is booming on port 5000
-  Visit http://localhost:${port}`);
-  });
 
   
-module.exports = app
+module.exports = start()
