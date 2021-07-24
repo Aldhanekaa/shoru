@@ -109,7 +109,7 @@ export default Vue.extend({
         }
       })
 
-      console.log(this.$nuxt.$config)
+      console.log()
 
       e.preventDefault()
     },
