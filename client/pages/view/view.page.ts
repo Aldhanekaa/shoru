@@ -23,7 +23,7 @@ export default Vue.extend({
         return {
           found: true,
           url_name: params.name,
-          url: params.url,
+          url: APIResponse.data.url,
         }
       } else {
         return {
