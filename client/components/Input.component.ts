@@ -130,6 +130,7 @@ export default Vue.extend({
           message: string
           url?: string
           name: string
+          status?: string;
         }>(
           `${
             this.$config.http.isDev ? '' : 'https://shoru.herokuapp.com'
@@ -137,7 +138,7 @@ export default Vue.extend({
           Req
         )
 
-        if (this.isCustom && res.message !== 'success!') {
+        if (this.isCustom && (res.message !== 'success!' || res.status = 'success!')) {
           // @ts-ignore
           // console.log(this.$refs.customGeneratedLink)
           // @ts-ignore
