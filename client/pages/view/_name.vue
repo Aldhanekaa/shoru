@@ -20,6 +20,14 @@
         <p v-if="found" class="mt-4 text-gray-600 pb-5">
           See info about <span class="font-bold">{{ url_name }}</span> url name
         </p>
+        
+        <p v-if="found" class="mt-4 text-gray-600 pb-5">
+          This url will direct you to <span class="font-bold">{{ url }}</span>
+        </p>
+
+        <p v-if="found" class="mt-4 text-gray-600 pb-5">
+          You can visit <span class="font-bold">https://shoru.vercel.app/{{ url_name }}</span> for shortcut
+        </p>
 
         <v-col v-if="found" cols="12">
           <a :href="'https://shoru.vercel.app/' + url_name">
