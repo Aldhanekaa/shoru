@@ -138,18 +138,17 @@ export default Vue.extend({
           Req
         )
 
-        if (this.isCustom || (res.message !== 'success!' || res.status = 'success!')) {
+        if (this.isCustom && res.message == 'success!') {
           // @ts-ignore
           // console.log(this.$refs.customGeneratedLink)
-          if (this.isCustom) {
             // @ts-ignore
             this.$refs.customGeneratedLink.error = true
             // @ts-ignore
             this.$refs.customGeneratedLink.errorMessages = res.message
-          }
+          
         }
 
-        if (res.message === 'success!') {
+        if (res.message === 'success!' || res.status === "success!") {
           // @ts-ignore
           window.location = `/view/${res.name}`
         }
