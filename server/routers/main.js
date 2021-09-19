@@ -63,7 +63,8 @@ module.exports = (app) => {
             try {
               await newUrl.save()
               res.json({
-                url: `https://shoru.vercel.app/${name}`,
+                yourUrl: url,
+                newUrl: `https://shoru.vercel.app/${name}`,
                 status: 'success!',
                 name,
               })
