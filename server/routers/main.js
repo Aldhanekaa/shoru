@@ -6,6 +6,14 @@ const Url = require('../models/url.model')
 
 const invalidNames = ['api', 'apis', 'view', 'views']
 
+function checkUrlStatus (url) {
+  fetch(url).then(
+    function (response) {
+      return response.status;
+    }
+  )
+}
+
 /**
  * @param {application} app
  */
@@ -17,8 +25,9 @@ module.exports = (app) => {
     if (req.body.url) {
       let { url } = req.body
       url = url.trim()
+      let urlStatus = checkUrlStatus(url);
 
-      if (url.match(regexForUrl)) {
+      if (url.match(regexForUrl && urlStatus == 200)) {
         if (req.body.name) {
           let { name } = req.body
           name = name.trim()
@@ -79,7 +88,7 @@ module.exports = (app) => {
             await newUrl.save()
             await newUrl.updateOne({ name: newUrl._id })
             res.json({
-              url: `https://shoru.vercel.app/${newUrl.id}`,
+              Url: `https://shoru.vercel.app/${newUrl.id}`,
               message: 'success!',
               name: newUrl.id,
             })
