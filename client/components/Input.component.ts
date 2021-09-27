@@ -155,7 +155,7 @@ export default Vue.extend({
 
         console.log('res', res)
       } catch (err) {
-        window.alert('error accured')
+        window.alert("error occured")
       }
     },
   },
