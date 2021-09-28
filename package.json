@@ -23,7 +23,7 @@
     "helmet": "^4.6.0",
     "mongoose": "^5.13.3",
     "nuxt": "^2.15.7",
-    "url-exist": "^3.0.0",
+    "url-exists": "^1.0.3",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
