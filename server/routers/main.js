@@ -1,5 +1,5 @@
 /* eslint-disable */
-import urlExist from "url-exist";
+const urlExist = require('url-exist')
 
 const { application } = require('express')
 const Url = require('../models/url.model')
