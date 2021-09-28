@@ -1,4 +1,5 @@
 /* eslint-disable */
+import urlExist from "url-exist";
 
 const { application } = require('express')
 const Url = require('../models/url.model')
@@ -6,13 +7,6 @@ const Url = require('../models/url.model')
 
 const invalidNames = ['api', 'apis', 'view', 'views']
 
-function checkUrlStatus (url) {
-  fetch(url).then(
-    function (response) {
-      return response.status;
-    }
-  )
-}
 
 /**
  * @param {application} app
@@ -25,9 +19,9 @@ module.exports = (app) => {
     if (req.body.url) {
       let { url } = req.body
       url = url.trim()
-      let urlStatus = checkUrlStatus(url);
+      const exists = await urlExist(url);
 
-      if (url.match(regexForUrl && urlStatus == 200)) {
+      if (url.match(regexForUrl && exists)) {
         if (req.body.name) {
           let { name } = req.body
           name = name.trim()
