@@ -12,7 +12,7 @@ async function checkUrlStatus (url) {
   try {
     const isExist = await fetch(url)
     return true
-  }catch() {
+  }catch(err) {
     return false
   }
 }
