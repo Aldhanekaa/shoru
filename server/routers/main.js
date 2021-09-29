@@ -21,9 +21,10 @@ module.exports = (app) => {
     if (req.body.url) {
       let { url } = req.body
       url = url.trim()
+      var exists;
 
-      urlExists(url, function(err, exists) {
-        console.log(exists); // false 
+      urlExists(url, function(err, value) {
+        exists = value;
       });
 
       if (url.match(regexForUrl && exists)) {
