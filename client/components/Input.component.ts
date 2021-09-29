@@ -125,6 +125,7 @@ export default Vue.extend({
         if (this.isCustom) {
           Req.name = this.input.customGeneratedLink
         }
+        console.log(this.$config.http.isDev);
 
         const res = await this.$axios.$post<{
           message: string
@@ -155,7 +156,7 @@ export default Vue.extend({
 
         console.log('res', res)
       } catch (err) {
-        window.alert("error occured")
+        window.alert("error occured");
       }
     },
   },

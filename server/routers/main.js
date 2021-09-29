@@ -21,13 +21,14 @@ module.exports = (app) => {
     if (req.body.url) {
       let { url } = req.body
       url = url.trim()
-      let urlExists; 
+      var exists;
 
-      urlExists(url, function(err, exists) {
-        urlExists = exists; // false 
+      urlExists(url, function(err, value) {
+        exists = value;
+
       });
 
-      if (url.match(regexForUrl && urlExists)) {
+      if (url.match(regexForUrl && exists)) {
         if (req.body.name) {
           let { name } = req.body
           name = name.trim()
