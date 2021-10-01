@@ -8,7 +8,13 @@ const Url = require('../models/url.model')
 
 const invalidNames = ['api', 'apis', 'view', 'views']
 
-
+function checkUrl(url) {
+  return new Promise((resolve, reject) => {
+      urlExists(url, function(err, exists) {
+          resolve(exists);
+      });
+  })
+}
 
 /**
  * @param {application} app
@@ -21,14 +27,9 @@ module.exports = (app) => {
     if (req.body.url) {
       let { url } = req.body
       url = url.trim()
-      var exists;
+      const exists = await checkUrl(url);
 
-      urlExists(url, function(err, value) {
-        exists = value;
-
-      });
-
-      if (url.match(regexForUrl && exists)) {
+      if (url.match(regexForUrl) && exists) {
         if (req.body.name) {
           let { name } = req.body
           name = name.trim()
